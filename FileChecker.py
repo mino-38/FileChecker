@@ -1,12 +1,13 @@
 from watchdog.events import FileSystemEventHandler
 from watchdog.observers.polling import PollingObserver
 from pystray import Icon, Menu, MenuItem
-from multiprocessing import Process
+from PIL import Image
 from tkinter import filedialog
 from tkinter import ttk
 import pystray
 import tkinter
 import datetime as dt
+import threading
 import json
 import sys
 import os
@@ -151,7 +152,7 @@ def create():
     button1 = ttk.Button(root, text="参照", command=lambda: select_path(entry, directory=True))
     button1.grid(column=1, row=1)
     button2 = ttk.Button(root, text="スタート")
-    button2["command"] = lambda: start(st.get(), button1, st)
+    button2["command"] = lambda: start(st.get(), button2, st)
     button2.grid(column=0, row=2)
     label2 = ttk.Label(root, text="ログ")
     label2.grid(column=0, row=3)
@@ -175,14 +176,13 @@ def main():
     try:
         root, log = create()
         icon = TaskTray(root)
-        stray = Process(target=icon.start)
-        stray.start()
+        threading.Thread(target=icon.start).start()
         event_handler = FileChecker(log)
         root.mainloop()
     finally:
         event_handler.close()
         try:
-            stray.terminate()
+            icon.icon.stop()
         except:
             pass
 
