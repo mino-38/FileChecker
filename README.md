@@ -4,8 +4,8 @@
 tkinterで実装してるので見た目がアレなのは許してください
 
 # 依存関係について
-watchdogとpystrayをインストールしてください
+watchdogとpystrayとPillowをインストールしてください
 
 ```bash
-$ pip install watchdog pystray
+$ pip install watchdog pystray Pillow
 ```
