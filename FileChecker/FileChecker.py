@@ -62,9 +62,9 @@ class FileChecker(FileSystemEventHandler):
         txt = "{}: {}\n".format(dt.datetime.now(), " ".join(text))
         self.txt.configure(state=tkinter.NORMAL)
         if red:
-            self.txt.insert("end", txt, "delete")
+            self.txt.insert(tkinter.END, txt, "delete")
         else:
-            self.txt.insert("end", txt)
+            self.txt.insert(tkinter.END, txt)
         self.txt.configure(state=tkinter.DISABLED)
         self.txt.see(tkinter.END)
         if config.get("file"):
@@ -94,15 +94,15 @@ class FileChecker(FileSystemEventHandler):
 
 def start(path, button, string):
     if os.path.isdir(path):
-        start.observer = PollingObserver()
-        start.observer.schedule(event_handler, path, recursive=True)
-        start.observer.start()
-        button["command"] = lambda: pause(button, string)
+        observer = PollingObserver()
+        observer.schedule(event_handler, path, recursive=True)
+        observer.start()
+        button["command"] = lambda: pause(observer, button, string)
         button["text"] = "一時停止"
 
-def pause(button, string):
-    start.observer.stop()
-    start.observer.join()
+def pause(observer, button, string):
+    observer.stop()
+    observer.join()
     button["command"] = lambda: start(string.get(), button, string)
     button["text"] = "スタート"
 
