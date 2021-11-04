@@ -1,4 +1,3 @@
 Pillow
 pystray
 watchdog
-cx_Freeze

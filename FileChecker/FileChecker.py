@@ -1,16 +1,21 @@
 from watchdog.events import FileSystemEventHandler
 from watchdog.observers.polling import PollingObserver
-from pystray import Icon, Menu, MenuItem
 from PIL import Image
 from tkinter import filedialog
 from tkinter import ttk
-import pystray
 import tkinter
 import datetime as dt
 import threading
 import json
 import sys
 import os
+
+if sys.platform == "win32":
+    from pystray._base import Menu, MenuItem, Icon
+    import pystray._win32
+else:
+    from pystray import Menu, MenuItem, Icon
+    import pystray
 
 def resource_path(path):
     if hasattr(sys, "_MEIPASS"):
@@ -45,7 +50,7 @@ class TaskTray:
             items.append(MenuItem(option, callback, default=True if option == "表示" else False))
         menu = Menu(*items)
         image = Image.open(self.file)
-        self.icon = pystray.Icon("FileChecker", image, "Tray Icon", menu)
+        self.icon = pystray.Icon("FileChecker", image, "FileChecker Icon", menu)
         self.icon.run()
 
     def quit(self):
