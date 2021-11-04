@@ -1,10 +1,10 @@
 from watchdog.events import FileSystemEventHandler
 from watchdog.observers.polling import PollingObserver
-#from pystray import Icon, Menu, MenuItem
+from pystray import Icon, Menu, MenuItem
 from PIL import Image
 from tkinter import filedialog
 from tkinter import ttk
-#import pystray
+import pystray
 import tkinter
 import datetime as dt
 import threading
@@ -35,8 +35,6 @@ class Config(dict):
 
 class TaskTray:
     file = resource_path("FileCheckerIcon.ico")
-    print(os.path.isfile(file), file)
-    quit()
     def __init__(self, root):
         self.root = root
 
