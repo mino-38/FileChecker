@@ -4,10 +4,8 @@
 Windows10のみでしか動作確認してません
 
 # 使い方
-## Pythonを使う方法
+## pipを使う方法
 ```bash
-$ git clone https://github.com/mino-38/FileChecker
-$ cd FileChecker
-$ pip install -r requirements.txt
-$ python FileChecker/FileChecker.py
+$ pip install git+https://github.com/mino-38/FileChecker
+$ FileChecker
 ```
