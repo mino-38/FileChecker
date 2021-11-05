@@ -1,21 +1,16 @@
 from watchdog.events import FileSystemEventHandler
 from watchdog.observers.polling import PollingObserver
 from PIL import Image
+from pystray import Menu, MenuItem, Icon
 from tkinter import filedialog
 from tkinter import ttk
 import tkinter
 import datetime as dt
 import threading
+import pystray
 import json
 import sys
 import os
-
-if sys.platform == "win32":
-    from pystray._base import Menu, MenuItem, Icon
-    import pystray._win32
-else:
-    from pystray import Menu, MenuItem, Icon
-    import pystray
 
 def resource_path(path):
     if hasattr(sys, "_MEIPASS"):
