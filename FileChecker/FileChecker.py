@@ -157,7 +157,7 @@ def create():
     button2.grid(column=0, row=2)
     label2 = ttk.Label(root, text="ログ")
     label2.grid(column=0, row=3)
-    log = tkinter.Text(root, width=280, bg="white", bd=0, height=200)
+    log = tkinter.Text(root)
     log.grid(column=0, row=4)
     scrollbar = ttk.Scrollbar(root, orient=tkinter.VERTICAL, command=log.yview)
     log["yscrollcommand"] = scrollbar.set
